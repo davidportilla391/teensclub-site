@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TeensClub® — La tardeada que no olvidas</title>
+<meta name="description" content="TeensClub es una casa productora de eventos dirigida a adolescentes en los antros de México. 13 a 17 años. Sin alcohol. VOL.01 — 14 Junio 2026, Green Plaza Satélite."/>
+
+<!-- Open Graph / WhatsApp / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://teensclub.mx/"/>
+<meta property="og:title" content="TeensClub® VOL.01 — 14 Junio 2026"/>
+<meta property="og:description" content="La tardeada que no olvidas. 13 a 17 años · Sin alcohol · Green Plaza Satélite. Boletos desde $350 MXN."/>
+<meta property="og:image" content="https://teensclub.mx/og-image.jpg"/>
+<meta property="og:locale" content="es_MX"/>
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="TeensClub® VOL.01 — 14 Junio 2026"/>
+<meta name="twitter:description" content="La tardeada que no olvidas. 13 a 17 años · Sin alcohol · Green Plaza Satélite."/>
+<meta name="twitter:image" content="https://teensclub.mx/og-image.jpg"/>
+
+<!-- Mobile / PWA -->
+<meta name="theme-color" content="#0a1330"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1330;
+  --cream:#e6e1cf;
+  --cream2:#ede9da;
+  --accent:#ffb84d;
+  --line-dark:rgba(230,225,207,.12);
+  --line-light:rgba(10,19,48,.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Bricolage Grotesque',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,19,48,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-dark)}
+.nav-inner{padding:13px 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Archivo Black',sans-serif;font-size:17px;letter-spacing:-.02em;color:var(--cream);text-decoration:none}
+.logo sup{font-size:9px;opacity:.5}
+.nav-links{display:flex;gap:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+.nav-links a{color:var(--cream);text-decoration:none;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:var(--cream);color:var(--navy);padding:9px 18px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;transition:transform .2s}
+.nav-cta:hover{transform:scale(1.04)}
+
+/* TICKER */
+.ticker{background:rgba(10,19,48,.95);border-top:1px solid var(--line-dark);padding:8px 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;animation:tick 32s linear infinite}
+.ticker-track span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.5;margin:0 20px}
+.ticker-track span.dot{opacity:.2;margin:0 2px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{background:var(--navy);position:relative;padding:60px 40px 56px;overflow:hidden;min-height:88vh;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(230,225,207,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(230,225,207,.04) 1px,transparent 1px);background-size:55px 55px;pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--line-dark);padding:6px 14px;border-radius:100px;margin-bottom:22px;width:fit-content;color:var(--cream);opacity:.65;position:relative}
+.live-dot{width:5px;height:5px;background:#ff4444;border-radius:50%;box-shadow:0 0 7px #ff4444;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+h1{font-family:'Archivo Black',sans-serif;font-size:clamp(52px,10vw,112px);line-height:.87;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:32px;position:relative}
+h1 .outline{-webkit-text-stroke:1.5px var(--cream);color:transparent}
+h1 .shift{display:block;padding-left:5vw;font-style:italic}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line-dark);padding-top:24px;position:relative}
+.hero-stats{display:flex;gap:32px}
+.stat-item{display:flex;flex-direction:column;gap:4px}
+.stat-num{font-family:'Archivo Black',sans-serif;font-size:24px;color:var(--cream)}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.4}
+.hero-cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.cta-btn{background:var(--cream);color:var(--navy);padding:15px 26px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;text-decoration:none;transition:transform .2s}
+.cta-btn:hover{transform:scale(1.03)}
+.cta-note{font-family:'JetBrains Mono',monospace;font-size:9px;opacity:.3;letter-spacing:.1em;text-transform:uppercase}
+
+/* ABOUT */
+.about{background:var(--cream2);color:var(--navy);padding:80px 40px}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.about-text p{font-size:15px;line-height:1.75;opacity:.72;margin-bottom:18px;max-width:480px;color:var(--navy)}
+.about-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(10,19,48,.2);border-radius:100px;color:var(--navy);opacity:.6}
+.about-card{background:var(--navy);color:var(--cream);border-radius:22px;padding:32px}
+.about-card-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px dashed rgba(230,225,207,.12)}
+.about-card-row:last-child{border-bottom:none}
+.about-card-key{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.4}
+.about-card-val{font-family:'Archivo Black',sans-serif;font-size:17px;letter-spacing:-.02em}
+
+/* EVENTS */
+.events{background:var(--navy);padding:80px 40px}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.event-card{background:rgba(230,225,207,.04);border:1px solid rgba(230,225,207,.12);border-radius:22px;overflow:hidden;transition:transform .3s,border-color .3s}
+.event-card.active{border-color:rgba(230,225,207,.32);background:rgba(230,225,207,.07)}
+.event-card.active:hover{transform:translateY(-4px)}
+.event-card-top{padding:24px;border-bottom:1px solid rgba(230,225,207,.1)}
+.event-vol{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-bottom:10px}
+.event-name{font-family:'Archivo Black',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:6px;line-height:1}
+.event-date{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.5;letter-spacing:.1em}
+.event-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,184,77,.1);border:1px solid rgba(255,184,77,.25);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:100px;margin-top:12px}
+.badge-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;animation:blink 1.4s ease-in-out infinite}
+.event-badge.soon{background:rgba(230,225,207,.05);border-color:rgba(230,225,207,.15);color:var(--cream)}
+.event-card-bottom{padding:18px 24px;display:flex;justify-content:space-between;align-items:center}
+.event-price{font-family:'Archivo Black',sans-serif;font-size:22px}
+.event-price span{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.4;font-weight:400;margin-left:4px}
+.event-btn{background:var(--cream);color:var(--navy);padding:10px 18px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:11px;text-transform:uppercase;cursor:pointer;border:none;transition:transform .2s;text-decoration:none}
+.event-btn:hover{transform:scale(1.04)}
+.event-card.coming{opacity:.38;pointer-events:none}
+
+/* COUNTDOWN */
+.countdown{background:var(--cream2);color:var(--navy);padding:80px 40px}
+.cd-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:36px}
+.cd-when{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--navy);opacity:.5;letter-spacing:.1em;text-transform:uppercase;text-align:right;line-height:1.8}
+.cd-when b{display:block;font-size:12px;opacity:1;color:var(--navy)}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cd-box{background:var(--navy);border-radius:18px;padding:28px 12px 22px;text-align:center}
+.cd-num{font-family:'Archivo Black',sans-serif;font-size:clamp(40px,7vw,72px);color:var(--cream);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.cd-unit{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);opacity:.4;margin-top:12px}
+
+/* LOCATION */
+.location{background:var(--navy);overflow:hidden}
+.location-inner{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+.location-text{padding:80px 48px;display:flex;flex-direction:column;justify-content:center}
+.location-text p{color:var(--cream);opacity:.65;font-size:15px;line-height:1.7;margin-bottom:24px;max-width:420px}
+.loc-card{background:rgba(230,225,207,.06);border:1px solid var(--line-dark);border-radius:14px;padding:18px 20px;margin-bottom:12px;max-width:420px}
+.loc-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;opacity:.4;margin-bottom:6px;color:var(--cream)}
+.loc-val{font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:-.02em;color:var(--cream)}
+.loc-val small{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:400;opacity:.55;margin-top:4px;letter-spacing:0}
+.map-btns{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.map-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;transition:transform .2s}
+.map-btn:hover{transform:scale(1.03)}
+.map-btn.gmaps{background:var(--cream);color:var(--navy)}
+.map-btn.waze{background:#33ccff;color:#000}
+.location-map{background:rgba(230,225,207,.03);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.map-grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--line-dark) 1px,transparent 1px),linear-gradient(90deg,var(--line-dark) 1px,transparent 1px);background-size:44px 44px}
+.map-pin{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.map-pin-icon{width:48px;height:48px;background:var(--cream);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center}
+.map-pin-icon::after{content:"";width:16px;height:16px;background:var(--navy);border-radius:50%;transform:rotate(45deg)}
+.map-pin-label{font-family:'Archivo Black',sans-serif;font-size:14px;color:var(--cream);letter-spacing:-.01em;text-align:center;margin-top:16px}
+.map-pin-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cream);opacity:.45;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-top:5px}
+
+/* FAQ */
+.faq{background:var(--cream2);color:var(--navy);padding:80px 40px}
+.faq-list{max-width:800px}
+.faq-item{border-top:1px solid rgba(10,19,48,.12)}
+.faq-item:last-child{border-bottom:1px solid rgba(10,19,48,.12)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Archivo Black',sans-serif;font-size:17px;color:var(--navy);letter-spacing:-.02em}
+.faq-icon{font-size:22px;color:var(--navy);opacity:.35;transition:transform .3s;flex-shrink:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:300;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a-inner{padding:0 0 22px;font-size:15px;line-height:1.75;opacity:.65;color:var(--navy);max-width:680px}
+.faq-item.open .faq-icon{transform:rotate(45deg);opacity:.7}
+.faq-item.open .faq-a{max-height:300px}
+
+/* FOOTER */
+.footer{background:var(--navy);border-top:1px solid var(--line-dark);padding:36px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Archivo Black',sans-serif;font-size:14px;opacity:.4;color:var(--cream)}
+.footer-links{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:.35}
+.footer-links a{color:var(--cream);text-decoration:none;transition:opacity .2s}
+.footer-links a:hover{opacity:.7}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:9px;opacity:.22;letter-spacing:.08em;text-transform:uppercase;color:var(--cream)}
+
+/* SHARED */
+.section-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:"";width:22px;height:1px;background:currentColor;opacity:.5}
+h2{font-family:'Archivo Black',sans-serif;font-size:clamp(34px,6vw,68px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:40px}
+.navy-em em{font-style:italic;-webkit-text-stroke:1.5px var(--cream);color:transparent}
+.cream-em em{font-style:italic;-webkit-text-stroke:1.5px var(--navy);color:transparent}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,10,28,.85);backdrop-filter:blur(8px);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--navy);border:1px solid rgba(230,225,207,.18);border-radius:24px;width:100%;max-width:480px;overflow:hidden;transform:translateY(20px);transition:transform .3s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-header{padding:28px 28px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-title{font-family:'Archivo Black',sans-serif;font-size:22px;letter-spacing:-.02em;color:var(--cream);text-transform:uppercase}
+.modal-close{background:none;border:none;color:var(--cream);opacity:.4;cursor:pointer;font-size:22px;line-height:1;padding:4px;transition:opacity .2s}
+.modal-close:hover{opacity:1}
+.modal-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);opacity:.4;padding:8px 28px 0}
+.modal-covers{padding:20px 28px;display:flex;flex-direction:column;gap:10px}
+.cover-opt{border:1px solid rgba(230,225,207,.15);border-radius:14px;padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:border-color .2s,background .2s}
+.cover-opt:hover{border-color:rgba(230,225,207,.4);background:rgba(230,225,207,.04)}
+.cover-opt.selected{border-color:var(--cream);background:rgba(230,225,207,.07)}
+.cover-opt-left{}
+.cover-opt-name{font-family:'Archivo Black',sans-serif;font-size:17px;color:var(--cream);letter-spacing:-.02em}
+.cover-opt-desc{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);opacity:.4;margin-top:4px}
+.cover-opt-price{font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--cream)}
+.cover-opt-price span{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.4;font-weight:400}
+.cover-opt.disabled{opacity:.35;pointer-events:none}
+.modal-footer{padding:0 28px 28px}
+.modal-btn{width:100%;padding:16px;border-radius:100px;background:var(--cream);color:var(--navy);font-family:'Archivo Black',sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.04em;border:none;cursor:pointer;transition:transform .2s,opacity .2s;margin-top:8px}
+.modal-btn:hover{transform:scale(1.02)}
+.modal-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.modal-note{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);opacity:.3;text-align:center;margin-top:12px}
+.modal-loading{display:none;text-align:center;padding:20px 28px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);opacity:.5}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-inner{padding:12px 20px}
+  .nav-links{display:none}
+  .hero{padding:40px 20px 44px;min-height:auto}
+  .about,.events,.countdown,.faq{padding:56px 20px}
+  .about-grid{grid-template-columns:1fr}
+  .location-inner{grid-template-columns:1fr}
+  .location-map{min-height:280px}
+  .location-text{padding:56px 20px}
+  .hero-stats{gap:16px}
+  .footer{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV + TICKER -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">TeensClub<sup>®</sup></a>
+    <div class="nav-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:teensclubmx@gmail.com">Contacto</a>
+    </div>
+    <a href="#eventos" class="nav-cta">Ver eventos</a>
+  </div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>TeensClub®</span><span class="dot">·</span>
+      <span>13 a 17 años</span><span class="dot">·</span>
+      <span>VOL.01</span><span class="dot">·</span>
+      <span>14 Junio 2026</span><span class="dot">·</span>
+      <span>Green Plaza Satélite</span><span class="dot">·</span>
+      <span>Sin alcohol</span><span class="dot">·</span>
+      <span>Boleto digital</span><span class="dot">·</span>
+      <span>Pago seguro</span><span class="dot">·</span>
+      <span>TeensClub®</span><span class="dot">·</span>
+      <span>13 a 17 años</span><span class="dot">·</span>
+      <span>VOL.01</span><span class="dot">·</span>
+      <span>14 Junio 2026</span><span class="dot">·</span>
+      <span>Green Plaza Satélite</span><span class="dot">·</span>
+      <span>Sin alcohol</span><span class="dot">·</span>
+      <span>Boleto digital</span><span class="dot">·</span>
+      <span>Pago seguro</span><span class="dot">·</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-tag"><span class="live-dot"></span> La tardeada de los teens · México</div>
+  <h1>La noche<br><span class="outline shift">que esperas</span><br>todo el año.</h1>
+  <div class="hero-bottom">
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">VOL.01</div><div class="stat-label">Primera edición</div></div>
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Lugares disponibles</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Sin alcohol</div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#eventos" class="cta-btn">
+        Ver próximos eventos
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <div class="cta-note">Pago seguro · SPEI · Tarjeta · OXXO</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about" id="nosotros">
+  <div class="section-label" style="color:var(--navy)">01 — Qué es TeensClub</div>
+  <h2 style="color:var(--navy)" class="cream-em">Eventos que <em>marcan</em><br>tu adolescencia.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Somos una casa productora de eventos dirigida a adolescentes en los antros de México. Creamos experiencias únicas, seguras y de primer nivel para teens de 13 a 17 años.</p>
+      <p>Cada edición es un evento cuidado al detalle — música, ambiente, seguridad y vibra que no encuentras en otro lado.</p>
+      <div class="about-pills">
+        <div class="pill">13 a 17 años</div>
+        <div class="pill">Sin alcohol</div>
+        <div class="pill">Green Plaza Satélite</div>
+        <div class="pill">6 hrs de música</div>
+        <div class="pill">Ambiente seguro</div>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-row"><div class="about-card-key">Lugar</div><div class="about-card-val">Green Plaza Satélite</div></div>
+      <div class="about-card-row"><div class="about-card-key">Edad</div><div class="about-card-val">13 — 17 años</div></div>
+      <div class="about-card-row"><div class="about-card-key">Música</div><div class="about-card-val">Lo más comercial</div></div>
+      <div class="about-card-row"><div class="about-card-key">Bar</div><div class="about-card-val">100% Sin alcohol</div></div>
+      <div class="about-card-row"><div class="about-card-key">Seguridad</div><div class="about-card-val">Staff + Wristband</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="events" id="eventos">
+  <div class="section-label" style="color:var(--cream)">02 — Próximos eventos</div>
+  <h2 style="color:var(--cream)" class="navy-em">Elige tu <em>fecha.</em></h2>
+  <div class="events-grid">
+    <div class="event-card active">
+      <div class="event-card-top">
+        <div class="event-vol">VOL.01</div>
+        <div class="event-name">Tardeada<br>Junio</div>
+        <div class="event-date">Dom 14 · Jun · 2026 · 2:00 PM</div>
+        <div class="event-badge"><span class="badge-dot"></span> Venta abierta</div>
+      </div>
+      <div class="event-card-bottom">
+        <div class="event-price">$350<span>MXN desde</span></div>
+        <button class="event-btn" onclick="openModal()">Comprar →</button>
+      </div>
+    </div>
+    <div class="event-card coming">
+      <div class="event-card-top">
+        <div class="event-vol">VOL.02</div>
+        <div class="event-name">Tardeada<br>Agosto</div>
+        <div class="event-date">Próximamente · 2026</div>
+        <div class="event-badge soon">Próximamente</div>
+      </div>
+      <div class="event-card-bottom">
+        <div class="event-price">—<span>MXN</span></div>
+        <span class="event-btn" style="opacity:.4;pointer-events:none">Pronto</span>
+      </div>
+    </div>
+    <div class="event-card coming">
+      <div class="event-card-top">
+        <div class="event-vol">VOL.03</div>
+        <div class="event-name">Tardeada<br>Octubre</div>
+        <div class="event-date">Próximamente · 2026</div>
+        <div class="event-badge soon">Próximamente</div>
+      </div>
+      <div class="event-card-bottom">
+        <div class="event-price">—<span>MXN</span></div>
+        <span class="event-btn" style="opacity:.4;pointer-events:none">Pronto</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown">
+  <div class="section-label" style="color:var(--navy)">03 — Cuenta regresiva</div>
+  <h2 style="color:var(--navy)" class="cream-em">Próximo <em>evento.</em></h2>
+  <div class="cd-top">
+    <div></div>
+    <div class="cd-when"><b>Domingo 14 · Junio · 2026</b>2:00 PM · Hora CDMX</div>
+  </div>
+  <div class="cd-grid">
+    <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Días</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Horas</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Min</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Seg</div></div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<div class="location" id="ubicacion">
+  <div class="location-inner">
+    <div class="location-text">
+      <div class="section-label" style="color:var(--cream)">04 — Ubicación</div>
+      <h2 style="color:var(--cream)" class="navy-em">Nos vemos <em>aquí.</em></h2>
+      <p>Green Plaza Satélite, uno de los mejores venues del Estado de México. Fácil acceso, estacionamiento y zona segura.</p>
+      <div class="loc-card">
+        <div class="loc-label">James</div>
+        <div class="loc-val">Green Plaza Satélite<small>Blvd. de la Santa Cruz 142, Santa Cruz Acatlán, Naucalpan</small></div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-label">Cómo llegar</div>
+        <div class="loc-val">Auto · Uber · Metro Satélite<small>Estacionamiento disponible en plaza</small></div>
+      </div>
+      <div class="map-btns">
+        <a href="https://maps.google.com/?q=Green+Plaza+Satelite+Naucalpan" target="_blank" class="map-btn gmaps">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          Google Maps
+        </a>
+        <a href="https://waze.com/ul?q=Green+Plaza+Satelite+Naucalpan" target="_blank" class="map-btn waze">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          Waze
+        </a>
+      </div>
+    </div>
+    <div class="location-map">
+      <div class="map-grid-lines"></div>
+      <div class="map-pin">
+        <div class="map-pin-icon"></div>
+        <div class="map-pin-label" style="margin-top:16px">Green Plaza Satélite</div>
+        <div class="map-pin-sub">Naucalpan · EDOMEX</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq" id="faq">
+  <div class="section-label" style="color:var(--navy)">05 — Preguntas frecuentes</div>
+  <h2 style="color:var(--navy)" class="cream-em">Todo lo que <em>necesitas</em> saber.</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Qué edad necesito para entrar?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">El evento es exclusivo para teens de 13 a 17 años. Es obligatorio presentar una identificación oficial vigente: INE, pasaporte o credencial escolar con fotografía. No hay excepciones.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cómo funciona el boleto digital?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Al completar tu pago recibirás un correo con tu boleto digital en PDF. Incluye un código QR único que se escanea en la entrada. Solo necesitas mostrarlo desde tu celular.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Hay alcohol en el evento?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">No. TeensClub es 100% sin alcohol. El bar ofrece mocktails, energéticos, refrescos y agua. Es uno de nuestros pilares fundamentales para garantizar un ambiente seguro.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si ya no puedo ir?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Los boletos no son reembolsables, pero son transferibles. Puedes ceder tu boleto a otra persona de 13 a 17 años. Escríbenos a teensclubmx@gmail.com para gestionar el cambio de nombre.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cuál es el dress code?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Libre, pero sin fachoso. No se permiten playeras de fútbol, sandalias ni gorras ladeadas. Ven como quieras siempre que vengas presentable.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Hay reentradas?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">No hay reentradas. Las puertas cierran a las 3:00 PM. Te recomendamos llegar puntual para no perderte nada del evento.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cómo puedo pagar?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Aceptamos tarjeta de crédito y débito, transferencia SPEI y pago en efectivo en OXXO. Todo procesado de forma segura a través de Mercado Pago.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL COMPRA -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Selecciona tu cover</div>
+      <button class="modal-close" onclick="closeModalBtn()">×</button>
+    </div>
+    <div class="modal-sub">VOL.01 · Dom 14 Jun 2026 · 2:00 PM</div>
+    <div class="modal-covers">
+      <div class="cover-opt" id="opt-early" onclick="selectCover('early',350,'Early Bird')">
+        <div class="cover-opt-left">
+          <div class="cover-opt-name">Early Bird</div>
+          <div class="cover-opt-desc">Lugares limitados · Acceso general</div>
+        </div>
+        <div class="cover-opt-price">$350<span> MXN</span></div>
+      </div>
+      <div class="cover-opt" id="opt-general" onclick="selectCover('general',450,'General')">
+        <div class="cover-opt-left">
+          <div class="cover-opt-name">General</div>
+          <div class="cover-opt-desc">Acceso general al evento</div>
+        </div>
+        <div class="cover-opt-price">$450<span> MXN</span></div>
+      </div>
+      <div class="cover-opt disabled" id="opt-vip">
+        <div class="cover-opt-left">
+          <div class="cover-opt-name">VIP Zone</div>
+          <div class="cover-opt-desc">Próximamente disponible</div>
+        </div>
+        <div class="cover-opt-price">—<span> MXN</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-loading" id="modalLoading">Preparando tu pago...</div>
+      <button class="modal-btn" id="modalBtn" onclick="goToCheckout()" disabled>Selecciona un cover</button>
+      <div class="modal-note">🔒 Pago seguro · Tarjeta · OXXO · SPEI</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">TeensClub® · México</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/teensclubmx" target="_blank">Instagram</a>
+    <a href="mailto:teensclubmx@gmail.com">Contacto</a>
+  </div>
+  <div class="footer-copy">© 2026 TeensClub · Todos los derechos reservados</div>
+</div>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+// Mercado Pago Public Key
+const MP_PUBLIC_KEY = 'APP_USR-19874d8b-0fd3-43ac-9ca0-8f9b0b5d2576';
+const mp = new MercadoPago(MP_PUBLIC_KEY, { locale: 'es-MX' });
+
+// Modal
+let selectedCover = null;
+let selectedPrice = null;
+let selectedName = null;
+
+function openModal(){
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModalBtn(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModal(e){
+  if(e.target===document.getElementById('modalOverlay')) closeModalBtn();
+}
+function selectCover(id, price, name){
+  selectedCover=id; selectedPrice=price; selectedName=name;
+  document.querySelectorAll('.cover-opt:not(.disabled)').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('opt-'+id).classList.add('selected');
+  const btn=document.getElementById('modalBtn');
+  btn.disabled=false;
+  btn.textContent=`Pagar $${price} MXN — ${name}`;
+}
+
+async function goToCheckout(){
+  const btn=document.getElementById('modalBtn');
+  const loading=document.getElementById('modalLoading');
+  btn.style.display='none';
+  loading.style.display='block';
+
+  try {
+    // Llamar a la Netlify Function (seguro, desde el servidor)
+    const res = await fetch('/api/create-preference', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cover: selectedCover,
+        price: selectedPrice,
+        title: selectedName
+      })
+    });
+    const data = await res.json();
+    if(data.init_point){
+      window.location.href = data.init_point;
+    } else {
+      throw new Error('Sin init_point');
+    }
+  } catch(e) {
+    loading.style.display='none';
+    btn.style.display='block';
+    btn.textContent=`Pagar $${selectedPrice} MXN — ${selectedName}`;
+    alert('Hubo un error al procesar el pago. Intenta de nuevo.');
+  }
+}
+
+function toggleFaq(btn){
+  btn.parentElement.classList.toggle('open');
+}
+function updateCountdown(){
+  const target=new Date('2026-06-14T14:00:00-06:00');
+  const diff=target-new Date();
+  if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return}
+  document.getElementById('cd-d').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+</script>
+</body>
+</html>
