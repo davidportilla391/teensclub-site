@@ -145,9 +145,9 @@ body{background:var(--navy);color:var(--cream);font-family:'Bricolage Grotesque'
     </div>
   </div>
 
-  <!-- Tabla de ventas -->
-  <div class="section-title">Últimas ventas</div>
-  <div class="table-wrap">
+  <!-- Tabla de ventas boletos -->
+  <div class="section-title">Últimas ventas — Boletos</div>
+  <div class="table-wrap" style="margin-bottom:32px">
     <div class="table-head">
       <div>N° Boleto</div>
       <div>Comprador</div>
@@ -160,10 +160,61 @@ body{background:var(--navy);color:var(--cream);font-family:'Bricolage Grotesque'
     </div>
   </div>
 
+  <!-- POS KPIs -->
+  <div class="section-title">Ventas en evento — POS</div>
+  <div class="kpi-grid" style="margin-bottom:20px">
+    <div class="kpi-box">
+      <div class="kpi-label">Ingresos POS total</div>
+      <div class="kpi-num green" id="pos-total">$0</div>
+      <div class="kpi-sub">consumos del evento</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Efectivo</div>
+      <div class="kpi-num" id="pos-cash">$0</div>
+      <div class="kpi-sub">cobrado en caja</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Terminal MP</div>
+      <div class="kpi-num accent" id="pos-terminal">$0</div>
+      <div class="kpi-sub">cobrado con tarjeta</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Ticket promedio</div>
+      <div class="kpi-num" id="pos-avg">$0</div>
+      <div class="kpi-sub">por orden</div>
+    </div>
+  </div>
+
+  <!-- Productos más vendidos -->
+  <div class="section-title">Productos más vendidos</div>
+  <div class="table-wrap" style="margin-bottom:32px">
+    <div class="table-head" style="grid-template-columns:2fr 1fr 1fr">
+      <div>Producto</div>
+      <div>Unidades</div>
+      <div>Total</div>
+    </div>
+    <div id="products-body">
+      <div class="empty-state">Sin ventas POS aún</div>
+    </div>
+  </div>
+
+  <!-- Últimas órdenes POS -->
+  <div class="section-title">Últimas órdenes POS</div>
+  <div class="table-wrap">
+    <div class="table-head" style="grid-template-columns:1fr 1fr 1fr 1fr">
+      <div>Orden</div>
+      <div>Estación</div>
+      <div>Método</div>
+      <div>Total</div>
+    </div>
+    <div id="pos-orders-body">
+      <div class="empty-state">Sin órdenes aún</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-// Contraseña del panel (cámbiala)
 const ADMIN_PASSWORD = 'teensclub2026';
 
 function doLogin() {
@@ -171,7 +222,7 @@ function doLogin() {
   if (pwd === ADMIN_PASSWORD) {
     document.getElementById('loginOverlay').style.display = 'none';
     loadData();
-    setInterval(loadData, 60000); // Auto-refresh cada minuto
+    setInterval(loadData, 30000);
   } else {
     document.getElementById('loginError').style.display = 'block';
     document.getElementById('loginInput').value = '';
@@ -179,55 +230,78 @@ function doLogin() {
 }
 
 async function loadData() {
+  // Cargar boletos
   try {
     const res = await fetch('/api/admin-data');
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    renderData(data);
-  } catch {
-    // Sin backend conectado aún — mostrar datos de ejemplo
-    renderData(getMockData());
-  }
+    if (res.ok) { const data = await res.json(); renderTickets(data); }
+  } catch { renderTickets({ tickets: [], summary: { total:0, revenue:0, early:0, general:0 } }); }
+
+  // Cargar POS
+  try {
+    const res = await fetch('/api/pos-sync');
+    if (res.ok) { const data = await res.json(); renderPOS(data); }
+  } catch { renderPOS({ orders: [], summary: { totalRevenue:0, cashRevenue:0, terminalRevenue:0, avgTicket:0, productSales:{} } }); }
 }
 
-function getMockData() {
-  return {
-    tickets: [],
-    summary: { total: 0, revenue: 0, early: 0, general: 0 }
-  };
-}
-
-function renderData(data) {
+function renderTickets(data) {
   const { summary, tickets } = data;
+  document.getElementById('kpi-total').textContent = summary.total || 0;
+  document.getElementById('kpi-revenue').textContent = `$${(summary.revenue||0).toLocaleString()}`;
+  document.getElementById('kpi-early').textContent = summary.early || 0;
+  document.getElementById('kpi-general').textContent = summary.general || 0;
 
-  document.getElementById('kpi-total').textContent = summary.total;
-  document.getElementById('kpi-revenue').textContent = `$${summary.revenue.toLocaleString()}`;
-  document.getElementById('kpi-early').textContent = summary.early;
-  document.getElementById('kpi-general').textContent = summary.general;
+  const earlyPct = Math.round(((summary.early||0)/150)*100);
+  const generalPct = Math.round(((summary.general||0)/300)*100);
+  document.getElementById('bar-early').style.width = earlyPct+'%';
+  document.getElementById('bar-early-n').textContent = `${summary.early||0} vendidos`;
+  document.getElementById('bar-early-pct').textContent = earlyPct+'%';
+  document.getElementById('bar-general').style.width = generalPct+'%';
+  document.getElementById('bar-general-n').textContent = `${summary.general||0} vendidos`;
+  document.getElementById('bar-general-pct').textContent = generalPct+'%';
 
-  // Barras
-  const earlyPct = Math.round((summary.early / 150) * 100);
-  const generalPct = Math.round((summary.general / 300) * 100);
-  document.getElementById('bar-early').style.width = earlyPct + '%';
-  document.getElementById('bar-early-n').textContent = `${summary.early} vendidos`;
-  document.getElementById('bar-early-pct').textContent = earlyPct + '%';
-  document.getElementById('bar-general').style.width = generalPct + '%';
-  document.getElementById('bar-general-n').textContent = `${summary.general} vendidos`;
-  document.getElementById('bar-general-pct').textContent = generalPct + '%';
-
-  // Tabla
   const tbody = document.getElementById('table-body');
-  if (!tickets || tickets.length === 0) {
-    tbody.innerHTML = '<div class="empty-state">Aún no hay ventas registradas</div>';
-    return;
-  }
-  tbody.innerHTML = tickets.slice(0, 50).map(t => `
+  if (!tickets || tickets.length === 0) { tbody.innerHTML = '<div class="empty-state">Aún no hay ventas registradas</div>'; return; }
+  tbody.innerHTML = tickets.slice(0,50).map(t => `
     <div class="table-row">
       <div class="ticket-num">${t.ticket_number}</div>
       <div>${t.buyer_name}</div>
       <div><span class="cover-badge ${t.cover_type}">${t.cover_name}</span></div>
       <div class="amount-val">$${t.amount}</div>
       <div><span class="status-ok">Pagado</span></div>
+    </div>
+  `).join('');
+}
+
+function renderPOS(data) {
+  const { summary, orders } = data;
+  document.getElementById('pos-total').textContent = `$${(summary.totalRevenue||0).toLocaleString()}`;
+  document.getElementById('pos-cash').textContent = `$${(summary.cashRevenue||0).toLocaleString()}`;
+  document.getElementById('pos-terminal').textContent = `$${(summary.terminalRevenue||0).toLocaleString()}`;
+  document.getElementById('pos-avg').textContent = `$${summary.avgTicket||0}`;
+
+  // Productos
+  const prodBody = document.getElementById('products-body');
+  const prods = Object.entries(summary.productSales||{}).sort((a,b)=>b[1].qty-a[1].qty);
+  if (prods.length === 0) { prodBody.innerHTML = '<div class="empty-state">Sin ventas POS aún</div>'; }
+  else {
+    prodBody.innerHTML = prods.slice(0,10).map(([name,s]) => `
+      <div class="table-row" style="grid-template-columns:2fr 1fr 1fr">
+        <div>${name}</div>
+        <div>${s.qty} uds</div>
+        <div class="amount-val">$${s.revenue}</div>
+      </div>
+    `).join('');
+  }
+
+  // Órdenes
+  const ordBody = document.getElementById('pos-orders-body');
+  if (!orders || orders.length === 0) { ordBody.innerHTML = '<div class="empty-state">Sin órdenes aún</div>'; return; }
+  ordBody.innerHTML = orders.slice(0,20).map(o => `
+    <div class="table-row" style="grid-template-columns:1fr 1fr 1fr 1fr">
+      <div class="ticket-num">#${String(o.orderNumber).padStart(3,'0')}</div>
+      <div>${o.station}</div>
+      <div>${o.method === 'efectivo' ? '💵 Efectivo' : '💳 Terminal'}</div>
+      <div class="amount-val">$${o.total}</div>
     </div>
   `).join('');
 }
