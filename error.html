@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pago no completado — TeensClub®</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1330;color:#e6e1cf;font-family:'Bricolage Grotesque',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px}
+.card{background:rgba(230,225,207,.05);border:1px solid rgba(230,225,207,.15);border-radius:24px;padding:48px 40px;max-width:460px;width:100%;text-align:center}
+.icon{width:64px;height:64px;background:rgba(214,69,69,.1);border:1px solid rgba(214,69,69,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px}
+.logo{font-family:'Archivo Black',sans-serif;font-size:14px;opacity:.4;margin-bottom:32px}
+h1{font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:-.03em;text-transform:uppercase;line-height:.95;margin-bottom:12px}
+h1 em{font-style:italic;-webkit-text-stroke:1.5px #e6e1cf;color:transparent}
+p{font-size:15px;line-height:1.65;opacity:.65;margin-bottom:28px}
+.btns{display:flex;flex-direction:column;gap:10px}
+.btn-primary{background:#e6e1cf;color:#0a1330;padding:14px 24px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:block;text-align:center}
+.btn-secondary{background:transparent;border:1px solid rgba(230,225,207,.2);color:#e6e1cf;padding:13px 24px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;display:block;text-align:center;opacity:.6}
+.footer-note{font-family:'JetBrains Mono',monospace;font-size:9px;opacity:.25;letter-spacing:.12em;text-transform:uppercase;margin-top:32px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">TeensClub®</div>
+  <div class="icon">✕</div>
+  <h1>Pago <em>no</em> completado</h1>
+  <p>El pago no se procesó correctamente. No se realizó ningún cargo. Puedes intentarlo de nuevo cuando quieras.</p>
+  <div class="btns">
+    <a href="/#eventos" class="btn-primary">Intentar de nuevo →</a>
+    <a href="mailto:teensclubmx@gmail.com" class="btn-secondary">Contactar soporte</a>
+  </div>
+  <p class="footer-note">teensclub.mx · teensclubmx@gmail.com</p>
+</div>
+</body>
+</html>
