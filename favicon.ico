@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Panel Admin — TeensClub®</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a1330;--cream:#e6e1cf;--cream2:#ede9da;--accent:#ffb84d;--green:#4caf7d;--line:rgba(230,225,207,.12)}
+body{background:var(--navy);color:var(--cream);font-family:'Bricolage Grotesque',sans-serif;min-height:100vh}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:var(--navy);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:rgba(230,225,207,.05);border:1px solid rgba(230,225,207,.15);border-radius:24px;padding:40px;max-width:380px;width:100%;text-align:center}
+.login-logo{font-family:'Archivo Black',sans-serif;font-size:20px;margin-bottom:6px}
+.login-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-bottom:32px}
+.login-input{width:100%;background:rgba(230,225,207,.06);border:1px solid rgba(230,225,207,.15);border-radius:12px;padding:14px 16px;color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.1em;outline:none;text-align:center;margin-bottom:12px}
+.login-input:focus{border-color:rgba(230,225,207,.4)}
+.login-btn{width:100%;padding:15px;border-radius:100px;background:var(--cream);color:var(--navy);font-family:'Archivo Black',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.04em;border:none;cursor:pointer}
+.login-error{font-family:'JetBrains Mono',monospace;font-size:10px;color:#d64545;letter-spacing:.1em;text-transform:uppercase;margin-top:10px;display:none}
+
+/* TOP BAR */
+.top-bar{background:rgba(10,19,48,.95);border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.top-logo{font-family:'Archivo Black',sans-serif;font-size:15px}
+.top-logo sup{font-size:8px;opacity:.5}
+.top-right{display:flex;align-items:center;gap:12px}
+.top-event{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:.45}
+.top-live{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);opacity:.8}
+.live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.content{padding:28px;max-width:960px;margin:0 auto}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px}
+.kpi-box{background:rgba(230,225,207,.04);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+.kpi-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;margin-bottom:10px}
+.kpi-num{font-family:'Archivo Black',sans-serif;font-size:36px;letter-spacing:-.03em;line-height:1}
+.kpi-num.green{color:var(--green)}
+.kpi-num.accent{color:var(--accent)}
+.kpi-sub{font-family:'JetBrains Mono',monospace;font-size:9px;opacity:.35;margin-top:6px;letter-spacing:.08em}
+
+/* COVERS */
+.section-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:"";width:20px;height:1px;background:var(--cream);opacity:.4}
+
+.covers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:32px}
+.cover-card{background:rgba(230,225,207,.04);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+.cover-name{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:-.02em;margin-bottom:4px}
+.cover-price{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.45;letter-spacing:.1em;margin-bottom:16px}
+.cover-bar-wrap{background:rgba(230,225,207,.08);border-radius:100px;height:6px;margin-bottom:10px;overflow:hidden}
+.cover-bar{height:100%;border-radius:100px;background:var(--cream);transition:width .6s ease}
+.cover-stats{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.5}
+
+/* TABLE */
+.table-wrap{background:rgba(230,225,207,.03);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:32px}
+.table-head{padding:14px 20px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr 0.8fr;gap:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;opacity:.35}
+.table-row{padding:14px 20px;border-bottom:1px solid rgba(230,225,207,.05);display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr 0.8fr;gap:16px;align-items:center;font-size:13px}
+.table-row:last-child{border-bottom:none}
+.table-row:hover{background:rgba(230,225,207,.03)}
+.ticket-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;opacity:.7}
+.cover-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:100px}
+.cover-badge.early{background:rgba(255,184,77,.12);color:var(--accent)}
+.cover-badge.general{background:rgba(230,225,207,.1);color:var(--cream)}
+.amount-val{font-family:'Archivo Black',sans-serif;font-size:14px;color:var(--green)}
+.status-ok{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:rgba(76,175,125,.1);padding:4px 8px;border-radius:100px}
+.empty-state{padding:40px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;opacity:.25}
+
+/* REFRESH BTN */
+.refresh-btn{background:rgba(230,225,207,.08);border:1px solid var(--line);color:var(--cream);padding:9px 16px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.refresh-btn:hover{background:rgba(230,225,207,.14)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">TeensClub®</div>
+    <div class="login-sub">Panel de administración</div>
+    <input class="login-input" type="password" id="loginInput" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Entrar →</button>
+    <div class="login-error" id="loginError">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-logo">TeensClub<sup>®</sup> <span style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.3;font-weight:400;letter-spacing:.1em"> · ADMIN</span></div>
+  <div class="top-right">
+    <div class="top-event">VOL.01 · 14 Jun 2026</div>
+    <div class="top-live"><span class="live-dot"></span> En vivo</div>
+    <button class="refresh-btn" onclick="loadData()">↻ Actualizar</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- KPIs -->
+  <div class="section-title" style="margin-top:4px">Resumen general</div>
+  <div class="kpi-grid">
+    <div class="kpi-box">
+      <div class="kpi-label">Boletos vendidos</div>
+      <div class="kpi-num" id="kpi-total">—</div>
+      <div class="kpi-sub">de 500 disponibles</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Ingresos totales</div>
+      <div class="kpi-num green" id="kpi-revenue">—</div>
+      <div class="kpi-sub">MXN recaudados</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Early Bird</div>
+      <div class="kpi-num accent" id="kpi-early">—</div>
+      <div class="kpi-sub">a $350 MXN</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">General</div>
+      <div class="kpi-num" id="kpi-general">—</div>
+      <div class="kpi-sub">a $450 MXN</div>
+    </div>
+  </div>
+
+  <!-- Covers progress -->
+  <div class="section-title">Ocupación por cover</div>
+  <div class="covers-grid">
+    <div class="cover-card">
+      <div class="cover-name">Early Bird</div>
+      <div class="cover-price">$350 MXN · Cupo: 150</div>
+      <div class="cover-bar-wrap"><div class="cover-bar" id="bar-early" style="width:0%;background:var(--accent)"></div></div>
+      <div class="cover-stats"><span id="bar-early-n">0 vendidos</span><span id="bar-early-pct">0%</span></div>
+    </div>
+    <div class="cover-card">
+      <div class="cover-name">General</div>
+      <div class="cover-price">$450 MXN · Cupo: 300</div>
+      <div class="cover-bar-wrap"><div class="cover-bar" id="bar-general" style="width:0%"></div></div>
+      <div class="cover-stats"><span id="bar-general-n">0 vendidos</span><span id="bar-general-pct">0%</span></div>
+    </div>
+    <div class="cover-card" style="opacity:.4">
+      <div class="cover-name">VIP Zone</div>
+      <div class="cover-price">— · Próximamente</div>
+      <div class="cover-bar-wrap"><div class="cover-bar" style="width:0%"></div></div>
+      <div class="cover-stats"><span>0 vendidos</span><span>0%</span></div>
+    </div>
+  </div>
+
+  <!-- Tabla de ventas boletos -->
+  <div class="section-title">Últimas ventas — Boletos</div>
+  <div class="table-wrap" style="margin-bottom:32px">
+    <div class="table-head">
+      <div>N° Boleto</div>
+      <div>Comprador</div>
+      <div>Cover</div>
+      <div>Monto</div>
+      <div>Estado</div>
+    </div>
+    <div id="table-body">
+      <div class="empty-state">Conectando con Mercado Pago...</div>
+    </div>
+  </div>
+
+  <!-- POS KPIs -->
+  <div class="section-title">Ventas en evento — POS</div>
+  <div class="kpi-grid" style="margin-bottom:20px">
+    <div class="kpi-box">
+      <div class="kpi-label">Ingresos POS total</div>
+      <div class="kpi-num green" id="pos-total">$0</div>
+      <div class="kpi-sub">consumos del evento</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Efectivo</div>
+      <div class="kpi-num" id="pos-cash">$0</div>
+      <div class="kpi-sub">cobrado en caja</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Terminal MP</div>
+      <div class="kpi-num accent" id="pos-terminal">$0</div>
+      <div class="kpi-sub">cobrado con tarjeta</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Ticket promedio</div>
+      <div class="kpi-num" id="pos-avg">$0</div>
+      <div class="kpi-sub">por orden</div>
+    </div>
+  </div>
+
+  <!-- Productos más vendidos -->
+  <div class="section-title">Productos más vendidos</div>
+  <div class="table-wrap" style="margin-bottom:32px">
+    <div class="table-head" style="grid-template-columns:2fr 1fr 1fr">
+      <div>Producto</div>
+      <div>Unidades</div>
+      <div>Total</div>
+    </div>
+    <div id="products-body">
+      <div class="empty-state">Sin ventas POS aún</div>
+    </div>
+  </div>
+
+  <!-- Últimas órdenes POS -->
+  <div class="section-title">Últimas órdenes POS</div>
+  <div class="table-wrap">
+    <div class="table-head" style="grid-template-columns:1fr 1fr 1fr 1fr">
+      <div>Orden</div>
+      <div>Estación</div>
+      <div>Método</div>
+      <div>Total</div>
+    </div>
+    <div id="pos-orders-body">
+      <div class="empty-state">Sin órdenes aún</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ADMIN_PASSWORD = 'teensclub2026';
+
+function doLogin() {
+  const pwd = document.getElementById('loginInput').value;
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    loadData();
+    setInterval(loadData, 30000);
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginInput').value = '';
+  }
+}
+
+async function loadData() {
+  // Cargar boletos
+  try {
+    const res = await fetch('/api/admin-data');
+    if (res.ok) { const data = await res.json(); renderTickets(data); }
+  } catch { renderTickets({ tickets: [], summary: { total:0, revenue:0, early:0, general:0 } }); }
+
+  // Cargar POS
+  try {
+    const res = await fetch('/api/pos-sync');
+    if (res.ok) { const data = await res.json(); renderPOS(data); }
+  } catch { renderPOS({ orders: [], summary: { totalRevenue:0, cashRevenue:0, terminalRevenue:0, avgTicket:0, productSales:{} } }); }
+}
+
+function renderTickets(data) {
+  const { summary, tickets } = data;
+  document.getElementById('kpi-total').textContent = summary.total || 0;
+  document.getElementById('kpi-revenue').textContent = `$${(summary.revenue||0).toLocaleString()}`;
+  document.getElementById('kpi-early').textContent = summary.early || 0;
+  document.getElementById('kpi-general').textContent = summary.general || 0;
+
+  const earlyPct = Math.round(((summary.early||0)/150)*100);
+  const generalPct = Math.round(((summary.general||0)/300)*100);
+  document.getElementById('bar-early').style.width = earlyPct+'%';
+  document.getElementById('bar-early-n').textContent = `${summary.early||0} vendidos`;
+  document.getElementById('bar-early-pct').textContent = earlyPct+'%';
+  document.getElementById('bar-general').style.width = generalPct+'%';
+  document.getElementById('bar-general-n').textContent = `${summary.general||0} vendidos`;
+  document.getElementById('bar-general-pct').textContent = generalPct+'%';
+
+  const tbody = document.getElementById('table-body');
+  if (!tickets || tickets.length === 0) { tbody.innerHTML = '<div class="empty-state">Aún no hay ventas registradas</div>'; return; }
+  tbody.innerHTML = tickets.slice(0,50).map(t => `
+    <div class="table-row">
+      <div class="ticket-num">${t.ticket_number}</div>
+      <div>${t.buyer_name}</div>
+      <div><span class="cover-badge ${t.cover_type}">${t.cover_name}</span></div>
+      <div class="amount-val">$${t.amount}</div>
+      <div><span class="status-ok">Pagado</span></div>
+    </div>
+  `).join('');
+}
+
+function renderPOS(data) {
+  const { summary, orders } = data;
+  document.getElementById('pos-total').textContent = `$${(summary.totalRevenue||0).toLocaleString()}`;
+  document.getElementById('pos-cash').textContent = `$${(summary.cashRevenue||0).toLocaleString()}`;
+  document.getElementById('pos-terminal').textContent = `$${(summary.terminalRevenue||0).toLocaleString()}`;
+  document.getElementById('pos-avg').textContent = `$${summary.avgTicket||0}`;
+
+  // Productos
+  const prodBody = document.getElementById('products-body');
+  const prods = Object.entries(summary.productSales||{}).sort((a,b)=>b[1].qty-a[1].qty);
+  if (prods.length === 0) { prodBody.innerHTML = '<div class="empty-state">Sin ventas POS aún</div>'; }
+  else {
+    prodBody.innerHTML = prods.slice(0,10).map(([name,s]) => `
+      <div class="table-row" style="grid-template-columns:2fr 1fr 1fr">
+        <div>${name}</div>
+        <div>${s.qty} uds</div>
+        <div class="amount-val">$${s.revenue}</div>
+      </div>
+    `).join('');
+  }
+
+  // Órdenes
+  const ordBody = document.getElementById('pos-orders-body');
+  if (!orders || orders.length === 0) { ordBody.innerHTML = '<div class="empty-state">Sin órdenes aún</div>'; return; }
+  ordBody.innerHTML = orders.slice(0,20).map(o => `
+    <div class="table-row" style="grid-template-columns:1fr 1fr 1fr 1fr">
+      <div class="ticket-num">#${String(o.orderNumber).padStart(3,'0')}</div>
+      <div>${o.station}</div>
+      <div>${o.method === 'efectivo' ? '💵 Efectivo' : '💳 Terminal'}</div>
+      <div class="amount-val">$${o.total}</div>
+    </div>
+  `).join('');
+}
+</script>
+</body>
+</html>
