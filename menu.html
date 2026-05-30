@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TeensClub® — Carta de bebidas</title>
+<meta name="theme-color" content="#000000" />
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .menu-page{min-height:100vh;position:relative;overflow:hidden;padding-bottom:60px;}
+  .menu-orb{top:-460px;left:50%;margin-left:-600px;width:1200px;max-width:160vw;}
+  .menu-head{position:relative;z-index:2;text-align:center;padding:84px 24px 56px;}
+  .menu-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--tc-fg-muted);margin-bottom:22px;}
+  .menu-title{font-weight:var(--tc-weight-display);font-size:clamp(44px,8vw,72px);line-height:.92;letter-spacing:-.035em;color:var(--tc-fg);}
+  .menu-title .sp{color:var(--tc-accent);font-style:italic;}
+  .menu-sub{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--tc-fg-muted);margin-top:20px;}
+  .menu-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:26px;}
+  .menu-rule span{width:54px;height:1px;background:var(--tc-border-strong);}
+  .menu-rule i{width:6px;height:6px;border-radius:50%;background:var(--tc-blue);box-shadow:var(--tc-glow-blue-sm);}
+
+  .menu-body{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 24px;}
+  .menu-group{margin-bottom:44px;}
+  .menu-group-label{text-align:center;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--tc-fg-faint);margin-bottom:22px;}
+  .menu-item{position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+    background:var(--tc-surface);border:1px solid var(--tc-border);border-radius:var(--tc-radius-md);
+    padding:22px 26px;margin-bottom:12px;transition:border-color var(--tc-dur) var(--tc-ease),box-shadow var(--tc-dur) var(--tc-ease);}
+  .menu-item:hover{border-color:rgba(31,31,255,.5);box-shadow:var(--tc-glow-blue-sm);}
+  .menu-item.vip{border-color:rgba(31,31,255,.45);}
+  .menu-item-l{min-width:0;}
+  .menu-item-name{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:18px;font-weight:var(--tc-weight-display);letter-spacing:-.01em;color:var(--tc-fg);line-height:1.1;}
+  .menu-item-name.it{font-style:italic;}
+  .menu-item-desc{font-size:13px;font-weight:500;line-height:1.5;color:var(--tc-fg-muted);margin-top:8px;}
+  .menu-price{flex:none;font-size:24px;font-weight:var(--tc-weight-display);letter-spacing:-.02em;color:var(--tc-fg);font-variant-numeric:tabular-nums;}
+  .menu-pill{display:inline-flex;align-items:center;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:var(--tc-radius-pill);}
+  .menu-pill.pop{background:var(--tc-blue);color:#fff;box-shadow:var(--tc-glow-blue-sm);}
+  .menu-pill.vip{background:transparent;color:var(--tc-accent);border:1px solid rgba(31,31,255,.55);}
+
+  .menu-foot{position:relative;z-index:2;max-width:760px;margin:32px auto 0;padding:26px 24px 0;text-align:center;border-top:1px solid var(--tc-border);}
+  .menu-foot p{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--tc-fg-muted);line-height:1.8;}
+  .menu-foot p b{color:var(--tc-fg);}
+  .menu-back{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tc-fg-faint);}
+  .menu-back:hover{color:var(--tc-blue);}
+</style>
+</head>
+<body style="background-color: rgb(0, 0, 0)">
+<div class="menu-page">
+  <img class="orb menu-orb" src="assets/orb.png" alt="" aria-hidden="true" />
+
+  <header class="menu-head">
+    <div class="menu-eyebrow">TeensClub®</div>
+    <h1 class="menu-title">Carta de <span class="sp" style="color: rgb(255, 255, 255)">bebidas.</span></h1>
+    <div class="menu-sub">
+</div>
+    <div class="menu-rule"><span></span><i></i><span></span></div>
+  </header>
+
+  <main class="menu-body">
+    <section class="menu-group">
+      <div class="menu-group-label">Mocktails de autor</div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Tropic Rush <span class="menu-pill pop">Popular</span></div>
+          <div class="menu-item-desc">Naranja · maracuyá · grenadine · agua mineral</div>
+        </div>
+        <div class="menu-price">$80</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Green Mint</div>
+          <div class="menu-item-desc">Menta fresca · limón · soda · base de té verde</div>
+        </div>
+        <div class="menu-price">$80</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Pink Smash</div>
+          <div class="menu-item-desc">Sandía natural · limón amarillo · jengibre · hielo triturado</div>
+        </div>
+        <div class="menu-price">$80</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Electric Blue</div>
+          <div class="menu-item-desc">Curaçao azul sin alcohol · piña · lima · soda</div>
+        </div>
+        <div class="menu-price">$80</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Berry Lemonade</div>
+          <div class="menu-item-desc">Fresa natural · limón · jarabe · menta</div>
+        </div>
+        <div class="menu-price">$80</div>
+      </div>
+    </section>
+
+    <section class="menu-group">
+      <div class="menu-group-label">Champaña sin alcohol</div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Copa Blanca</div>
+          <div class="menu-item-desc">Espumoso de uva blanca · servido en copa fría</div>
+        </div>
+        <div class="menu-price">$99</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Copa Rosada</div>
+          <div class="menu-item-desc">Espumoso de uva rosada · notas de frambuesa · copa fría</div>
+        </div>
+        <div class="menu-price">$99</div>
+      </div>
+
+      <div class="menu-item vip">
+        <div class="menu-item-l">
+          <div class="menu-item-name it">Champaña TC <span class="menu-pill vip">VIP</span></div>
+          <div class="menu-item-desc">Botella 750ml · 6 copas · bengalas · presentación especial</div>
+        </div>
+        <div class="menu-price">$380</div>
+      </div>
+    </section>
+
+    <section class="menu-group">
+      <div class="menu-group-label">Refrescos & agua</div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Refresco</div>
+          <div class="menu-item-desc">Coca-Cola · Sprite · Manzanita · Peach Tea · por vaso</div>
+        </div>
+        <div class="menu-price">$50</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-l">
+          <div class="menu-item-name">Agua natural o mineral</div>
+          <div class="menu-item-desc">500ml · con o sin gas</div>
+        </div>
+        <div class="menu-price">$30</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="menu-foot">
+    <p><b>100% sin alcohol</b> · El bar acepta efectivo y tarjeta<br>Precios en MXN con IVA incluido</p>
+    <a class="menu-back" href="index.html">← Volver al sitio</a>
+  </footer>
+</div>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#000000"/><path d="M34 30h32l-4 22a12 12 0 01-24 0z" fill="none" stroke="#1F1FFF" stroke-width="5"/><path d="M50 64v10" stroke="#1F1FFF" stroke-width="5"/></svg>
+</template>
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+.menu-eyebrow >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-weight: 900 !important }
+</style>
