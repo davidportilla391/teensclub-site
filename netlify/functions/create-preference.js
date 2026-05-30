@@ -13,8 +13,7 @@ exports.handler = async (event) => {
 
     // Validar covers permitidos
     const covers = {
-      general: { name: 'Acceso general', price: 350 },
-      barra: { name: 'Barra libre', price: 450 }
+      barra: { name: 'Barra libre', price: 250 }
     };
     if (!covers[cover]) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Cover inválido' }) };
