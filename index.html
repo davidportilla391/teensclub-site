@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TeensClub® — VOL.01 · 26 Junio · La Calle de las Sirenas</title>
+<meta name="description" content="TeensClub® VOL.01. El club de tu generación. 13 a 17 años · sin alcohol · La Calle de las Sirenas, Satélite. Cover $250 MXN con barra libre." />
+<meta name="theme-color" content="#000000" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TeensClub® VOL.01 — 26 Junio 2026" />
+<meta property="og:description" content="El club de tu generación. 13 a 17 años · sin alcohol · La Calle de las Sirenas, Satélite. Cover $250 MXN con barra libre." />
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ===================== TICKER ===================== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-wm"><span class="wordmark" style="font-size:21px;">TeensClub<sup>®</sup></span></a>
+    <div class="nav-links">
+      <a href="#eventos" class="nav-link" data-target="eventos">Eventos</a>
+      <a href="#covers" class="nav-link" data-target="covers">Covers</a>
+      <a href="#info" class="nav-link" data-target="info">Info</a>
+      <a href="menu.html" class="nav-link">Carta</a>
+      <a href="#ubicacion" class="nav-link" data-target="ubicacion">Ubicación</a>
+      <a href="#faq" class="nav-link" data-target="faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-whats" href="https://chat.whatsapp.com/IrNtUCA7NY01fYpmidqfoI" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.728-.967zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Grupo de WhatsApp
+      </a>
+      <button class="btn btn-primary" onclick="openSheet('vol01')">Comprar acceso</button>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#eventos">Eventos</a>
+  <a href="#covers">Covers</a>
+  <a href="#info">Info</a>
+  <a href="menu.html">Carta</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://chat.whatsapp.com/IrNtUCA7NY01fYpmidqfoI" target="_blank" rel="noopener">Grupo de WhatsApp</a>
+  <a href="#covers" class="mm-cta">Comprar Vol.01 →</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="inicio" style="font-weight: 900">
+  <img class="orb hero-orb" src="assets/orb.png" alt="" aria-hidden="true" />
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-inner" style="height: 1188px">
+    <div class="hero-eyebrow" style="height: 0px"><span class="live"></span> 01 — VOL.01 · VENTA ABIERTA</div>
+    <h1 class="hero-title" style="font-family: Inter; font-weight: 900; height: 132px">TeensClub Vol.1
+</h1>
+    <p class="hero-sub" style="font-weight: 200">La casa productora de eventos dirigida a adolescentes en los mejores antros de México.</p>
+    <div class="hero-avail"><span class="live"></span> Vol.1 disponible — boletos en venta</div>
+
+    <div class="hero-meta">
+      <div><div class="k">Fecha</div><div class="v">Vie 26 · Jun 2026</div></div>
+      <div><div class="k">Horario</div><div class="v">2:00 — 7:00 PM</div></div>
+      <div><div class="k">Venue</div><div class="v">La Calle de las Sirenas</div></div>
+      <div><div class="k">Edad</div><div class="v">13 — 17 años</div></div>
+    </div>
+
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-lg" onclick="openSheet('vol01')">
+        Comprar acceso
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <a href="#eventos" class="btn btn-ghost btn-lg">Ver eventos</a>
+      <a class="btn btn-whats btn-lg" href="https://chat.whatsapp.com/IrNtUCA7NY01fYpmidqfoI" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.728-.967zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Grupo de WhatsApp
+      </a>
+    </div>
+
+    <div class="hero-foot">
+      <span>
+</span><span class="dot">
+</span>
+      <span>
+</span><span class="dot">
+</span>
+      <span>
+</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== EXPERIENCIA ===================== -->
+<section class="experience sec">
+  <img class="orb exp-orb" src="assets/orb.png" alt="" aria-hidden="true" />
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">02 — <span class="sp">La experiencia</span></div>
+      <h2 class="sec-title">No es una tardeada.<br />Es <span class="sp">un club.</span></h2>
+      <p class="sec-intro">Entras a un cuarto oscuro, el bajo retumba, las luces cortan el humo y la pista ya está llena. La misma noche que ves en grande — montada para tu generación, sin alcohol y segura.</p>
+    </div>
+
+    <div class="exp-gallery stagger">
+      <figure class="exp-shot">
+        <img src="assets/exp-manos.png" alt="Manos arriba en la pista de TeensClub" loading="lazy" />
+      </figure>
+      <figure class="exp-shot">
+        <img src="assets/exp-dj.png" alt="DJ mezclando en cabina con luz azul" loading="lazy" />
+      </figure>
+      <figure class="exp-shot">
+        <img src="assets/exp-crowd.png" alt="La banda frente al escenario entre humo y luces" loading="lazy" />
+      </figure>
+    </div>
+
+    <div class="exp-pillars stagger">
+      <div class="pillar">
+        <div class="pillar-k">Sonido</div>
+        <h3>Bajo que se siente.</h3>
+        <p>Sound system de club, no de fiesta. Lo escuchas y lo sientes en el pecho toda la tarde.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-k">Luces</div>
+        <h3>Luces, humo, oscuro.</h3>
+        <p>Iluminación y humo de antro real. El cuarto se transforma — no parece un salón de fiestas.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-k">DJs en vivo</div>
+        <h3>5 horas mezclando.</h3>
+        <p>Los residentes de TeensClub al mando. House, reggaetón, rap y los hits del momento, sin parar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EVENTOS ===================== -->
+<section class="eventos sec" id="eventos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">03 — <span class="sp">Eventos</span></div>
+      <h2 class="sec-title">Cada edición, otra noche.</h2>
+      <p class="sec-intro">TeensClub no es un antro. Es la casa que monta el club de tu generación. Cada volumen, otro venue, misma promesa.</p>
+    </div>
+
+    <div class="ev-grid stagger">
+      <!-- VOL 01 — LIVE -->
+      <article class="ev-card featured" data-event="vol01" onclick="openSheet('vol01')">
+        <div class="ev-head poster">
+          <img src="assets/poster-vol01.png" alt="Póster TeensClub Volume 001" loading="lazy" />
+        </div>
+        <div class="ev-body">
+          <div class="ev-tags-row">
+            <span class="tag tag-blue"><span class="live"></span>En venta</span>
+            <span class="ev-id">Vol · 001</span>
+          </div>
+          <h3 class="ev-name">TeensClub Vol.1</h3>
+          <div class="ev-venue">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            La Calle de las Sirenas · Satélite
+          </div>
+          <p class="ev-desc">El primer capítulo. El primer antro hecho para tu generación. 5 horas con los DJs residentes de TeensClub.</p>
+          <div class="ev-rows">
+            <div class="ev-row"><span class="k">Fecha</span><span class="v">Vie 26 · Jun 2026</span></div>
+            <div class="ev-row"><span class="k">Horario</span><span class="v">2 — 7 PM</span></div>
+            <div class="ev-row"><span class="k">Cover</span><span class="v">$250 · barra libre</span></div>
+            <div class="ev-row"><span class="k">Edad</span><span class="v">13 — 17 años</span></div>
+          </div>
+          <div class="ev-cta">
+            <button class="btn btn-primary btn-full" onclick="event.stopPropagation();openSheet('vol01')">
+              Comprar cover
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- VOL 02 — SOON -->
+      <article class="ev-card soon" data-event="vol02">
+        <div class="ev-head">
+          <div class="ev-toprow">
+            <span class="tag tag-muted">Próximamente</span>
+            <span class="ev-id">Vol · 002</span>
+          </div>
+          <div class="ev-bigvol">VOL.</div>
+          <div class="ev-headmeta">
+            <div class="l"><div class="k">Por anunciar</div><div class="s">Verano 2026</div></div>
+            <div class="r"><div class="k">—</div><div class="s">TBA</div></div>
+          </div>
+        </div>
+        <div class="ev-body">
+          <h3 class="ev-name">TeensClub Vol.2</h3>
+          <div class="ev-venue">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Venue por anunciar
+          </div>
+          <p class="ev-desc">El siguiente capítulo. Otra ciudad, otro venue, otra vibra. Si quieres ser de los primeros en enterarte, déjanos tu correo y te mandamos el drop.</p>
+          <div class="ev-rows">
+            <div class="ev-row"><span class="k">Cover</span><span class="v">—</span></div>
+            <div class="ev-row"><span class="k">Edad</span><span class="v">13 — 17 años</span></div>
+          </div>
+          <div class="ev-cta">
+            <button class="btn btn-ghost btn-full is-disabled" disabled>Próximamente</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- VOL 03 — SOON -->
+      <article class="ev-card soon" data-event="vol03">
+        <div class="ev-head">
+          <div class="ev-toprow">
+            <span class="tag tag-muted">Próximamente</span>
+            <span class="ev-id">Vol · 003</span>
+          </div>
+          <div class="ev-bigvol">VOL.</div>
+          <div class="ev-headmeta">
+            <div class="l"><div class="k">Por anunciar</div><div class="s">2026</div></div>
+            <div class="r"><div class="k">—</div><div class="s">TBA</div></div>
+          </div>
+        </div>
+        <div class="ev-body">
+          <h3 class="ev-name">TeensClub Vol.3</h3>
+          <div class="ev-venue">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Venue por anunciar
+          </div>
+          <p class="ev-desc">La trilogía sigue. Más DJs, más line-up, mismo nivel de producción. Aún sin fecha pública. Si la primera te late, prepárate para la tercera.</p>
+          <div class="ev-rows">
+            <div class="ev-row"><span class="k">Cover</span><span class="v">—</span></div>
+            <div class="ev-row"><span class="k">Edad</span><span class="v">13 — 17 años</span></div>
+          </div>
+          <div class="ev-cta">
+            <button class="btn btn-ghost btn-full is-disabled" disabled>Próximamente</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COUNTDOWN ===================== -->
+<section class="countdown sec">
+  <div class="cd-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cd-top reveal">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;">04 — <span class="sp">El conteo</span></div>
+        <h2 class="sec-title" style="margin: 0; font-weight: 600">TEENSCLUB VOL.1</h2>
+      </div>
+      <div class="cd-when">
+        <div class="b">Viernes 26 · Junio · 2026</div>
+        <div class="s">2:00 PM · Hora CDMX</div>
+      </div>
+    </div>
+    <div class="cd-grid stagger" id="cd">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Días</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Horas</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Min</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Seg</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COVERS ===================== -->
+<section class="covers sec" id="covers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">05 — <span class="sp">Cover</span></div>
+      <h2 class="sec-title">Tu acceso.</h2>
+      <p class="sec-intro">Un solo cover. Barra libre toda la tarde. Boleto nominativo, QR + ID en la puerta. Pago seguro con Stripe.</p>
+    </div>
+
+    <div class="covers-grid one stagger">
+      <!-- COVER ÚNICO -->
+      <article class="cover featured">
+        <div class="cover-badge">Barra libre</div>
+        <div class="cover-type">Cover · Único</div>
+        <div class="cover-name">Barra libre</div>
+        <div class="cover-sub">Entras al club y tomas lo que quieras toda la tarde.</div>
+        <div class="cover-price"><span class="cur">$</span><span class="amt">250</span><span class="mxn">MXN</span></div>
+        <div class="cover-note">Por persona · IVA incluido</div>
+        <ul class="cover-perks">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Acceso general al evento</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Barra libre toda la tarde</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 5 horas de pista con los DJs residentes</li>
+        </ul>
+        <button class="btn btn-primary btn-full" onclick="openSheet('vol01','barra')">
+          Comprar acceso
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INFO ===================== -->
+<section class="info sec" id="info">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">06 — <span class="sp">Info</span></div>
+      <h2 class="sec-title">Todo lo que tienes que saber.</h2>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-rows stagger">
+        <div class="info-row"><div class="info-k">Evento</div><div class="info-v">TeensClub Vol.01<small>Edición #001 · 2026 · la primera</small></div></div>
+        <div class="info-row"><div class="info-k">Fecha</div><div class="info-v">Viernes 26 de junio<small>2026</small></div></div>
+        <div class="info-row"><div class="info-k">Horario</div><div class="info-v">2:00 — 7:00 PM<small>Puertas cierran a las 3 PM. No hay reentradas.</small></div></div>
+        <div class="info-row"><div class="info-k">Venue</div><div class="info-v">La Calle de las Sirenas<small>Blvd. Manuel Ávila Camacho 2324, Satélite, EDOMEX</small></div></div>
+        <div class="info-row"><div class="info-k">Edad</div><div class="info-v">13 a 17 años<small>Obligatorio presentar identificación con foto vigente.</small></div></div>
+        <div class="info-row"><div class="info-k">Bar</div><div class="info-v">100% sin alcohol<small>Refrescos, energéticos, aguas, Mocteleria</small></div></div>
+      </div>
+
+      <aside class="lineup reveal">
+        <div class="lineup-label">Line-up · DJs residentes</div>
+        <h3>5 horas de música sin parar.</h3>
+        <p>House, reggaetón, rap y los hits del momento. La mezcla que prende cualquier tardeada, curada por los residentes de TeensClub.</p>
+        <ul>
+          <li>Opening set <span>14:00 — 15:30</span></li>
+          <li>Main <span>15:30 — 17:00</span></li>
+          <li>Prime time <span>17:00 — 18:30</span></li>
+          <li>Closing · hits <span>18:30 — 19:00</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UBICACIÓN ===================== -->
+<section class="location" id="ubicacion">
+  <div class="location-inner">
+    <div class="location-text">
+      <div class="eyebrow">07 — <span class="sp">Ubicación</span></div>
+      <h2>La Calle de las <span class="sp">Sirenas.</span></h2>
+      <p>Vol.01 se monta en La Calle de las Sirenas, Satélite. Mismo ambiente, misma seguridad, misma vibra de un club real — hecho para vivirlo a tu edad.</p>
+
+      <div class="loc-address">
+        <div class="k">Dirección completa</div>
+        <div class="m">La Calle de las Sirenas</div>
+        <div class="s">Blvd. Manuel Ávila Camacho 2324, Satélite, Naucalpan de Juárez, EDOMEX</div>
+      </div>
+
+      <div class="loc-actions">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=La+Calle+de+las+Sirenas+Sat%C3%A9lite+Naucalpan" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Google Maps
+        </a>
+        <a class="btn btn-ghost" href="https://waze.com/ul?q=La%20Calle%20de%20las%20Sirenas%20Sat%C3%A9lite" target="_blank" rel="noopener">Abrir en Waze</a>
+      </div>
+    </div>
+
+    <div class="location-map">
+      <div class="map-ph"></div>
+      <div class="map-grain" aria-hidden="true"></div>
+      <div class="map-tag"><b>Venue Vol.01</b>La Calle de las Sirenas</div>
+      <div class="map-pin">
+        <div class="pin-orb"></div>
+        <div class="lbl">Aquí · Satélite</div>
+      </div>
+      <div class="map-note">Satélite · Naucalpan, EDOMEX</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REGLAS ===================== -->
+<section class="rules sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">08 — <span class="sp">Reglas</span></div>
+      <h2 class="sec-title">Reglas del club.</h2>
+    </div>
+    <div class="rules-grid stagger">
+      <div class="rule"><div class="rule-num">R.01</div><div class="rule-title">Edad real</div><div class="rule-desc">13 a 17 años. ID con foto obligatoria. Sin ID, no hay acceso aunque traigas boleto.</div></div>
+      <div class="rule"><div class="rule-num">R.02</div><div class="rule-title">Cero alcohol</div><div class="rule-desc">Ninguna bebida alcohólica, dentro ni fuera. Revisión en la puerta.</div></div>
+      <div class="rule"><div class="rule-num">R.03</div><div class="rule-title">Cero drogas</div><div class="rule-desc">Tolerancia cero. Si te cachan, entra tu tutor y se acaba la noche.</div></div>
+      <div class="rule"><div class="rule-num">R.04</div><div class="rule-title">Respeto total</div><div class="rule-desc">Nadie toca a nadie sin permiso. El acoso es expulsión inmediata.</div></div>
+      <div class="rule"><div class="rule-num">R.05</div><div class="rule-title">Sin reentrada</div><div class="rule-desc">Una vez que sales, ya estuvo. Planea bien tu entrada y tu salida.</div></div>
+      <div class="rule"><div class="rule-num">R.06</div><div class="rule-title">Foto y video</div><div class="rule-desc">Habrá cámara. Al comprar autorizas aparecer en el recap oficial.</div></div>
+      <div class="rule"><div class="rule-num">R.07</div><div class="rule-title">Tu boleto es tuyo</div><div class="rule-desc">Es nominativo. No lo compartas. Revisamos QR + ID en la puerta.</div></div>
+      <div class="rule"><div class="rule-num">R.08</div><div class="rule-title">Vive la noche</div><div class="rule-desc">Esto existe para ti. Conoce gente, baila, vive el club a tu edad.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">09 — <span class="sp">Preguntas</span></div>
+      <h2 class="sec-title">Dudas frecuentes.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details open>
+        <summary>¿TeensClub es un antro?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>No. TeensClub es la casa que organiza el club de tu generación: eventos para adolescentes de 13 a 17 años. Cada volumen se monta en otro lugar. Vol.01 es en La Calle de las Sirenas, Satélite.</p>
+      </details>
+      <details>
+        <summary>¿Necesito ir con un adulto?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>No. Es un espacio exclusivo para 13 a 17 años. No entran adultos ni menores de 13. Si eres mamá o papá, puedes dejar y recoger en la puerta dentro del horario.</p>
+      </details>
+      <details>
+        <summary>¿Cómo recibo mi boleto?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Al pagar recibes un correo con tu boleto QR. Ese QR es tu pulsera. Llega con el QR en tu celular y tu identificación vigente con foto.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si llego tarde?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>El evento es de 2 a 7 PM y las puertas cierran a las 3 PM. Después de esa hora no hay acceso. No hay reentradas una vez que sales.</p>
+      </details>
+      <details>
+        <summary>¿Hay alcohol?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>No. Ambiente 100% libre de alcohol. La barra sirve refrescos, energéticos y agua. Revisamos a todos en la entrada.</p>
+      </details>
+      <details>
+        <summary>¿Cuándo es el siguiente volumen?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Vol.02 aún no tiene fecha pública. Déjanos tu correo abajo y te avisamos primero cuando se libere el venue y la venta.</p>
+      </details>
+      <details>
+        <summary>¿Puedo cancelar o transferir mi boleto?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Los boletos son nominativos y no reembolsables. Puedes transferirlo a alguien dentro del rango de edad avisando al menos 72 horas antes a teensclubmx@gmail.com.</p>
+      </details>
+      <details>
+        <summary>¿Qué métodos de pago aceptan?<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Tarjeta de crédito/débito, SPEI y OXXO Pay, procesado con Mercado Pago. Todo con pasarela segura.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final">
+  <img class="orb final-glow" src="assets/orb.png" alt="" aria-hidden="true" />
+  <div class="final-inner">
+    <h2>Nos vemos <span class="sp">el 26.</span></h2>
+    <p>Vol.01 · Boletos limitados · La Calle de las Sirenas</p>
+    <button class="btn btn-primary btn-lg" onclick="openSheet('vol01')">
+      Comprar mi cover
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="foot-wm">
+        <div class="wordmark" style="font-size:30px;">TeensClub<sup>®</sup></div>
+        <p class="foot-tag">El club de tu generación. Vol.01 · 26 junio · La Calle de las Sirenas. Vol.02 próximamente.</p>
+        <form class="foot-form" onsubmit="return subscribe(event)">
+          <input type="email" placeholder="Tu correo para el próximo drop" required />
+          <button class="btn btn-primary" type="submit">Avísame</button>
+        </form>
+      </div>
+      <div class="foot-col">
+        <h4>Eventos</h4>
+        <a href="#eventos">Próximos eventos</a>
+        <a href="#covers">Covers</a>
+        <a href="#info">Info del evento</a>
+        <a href="menu.html">Carta de bebidas</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <a href="mailto:teensclubmx@gmail.com">teensclubmx@gmail.com</a>
+        <a href="https://instagram.com/teensclubmx" target="_blank" rel="noopener">@teensclubmx</a>
+        <a href="escaner.html">Control de acceso (staff)</a>
+        <a href="admin.html">Admin · ventas (staff)</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 TeensClub® · Todos los derechos reservados</div>
+      <div>Términos · Privacidad · Reglas</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== STICKY BUY (mobile) ===================== -->
+<button class="sticky-buy" id="stickyBuy" onclick="openSheet('vol01')">
+  Comprar Vol.01 <span class="pill">$250 · barra libre</span>
+</button>
+
+<!-- ===================== TICKET SHEET ===================== -->
+<div class="sheet-overlay" id="sheetOverlay">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <button class="sheet-close" onclick="closeSheet()" aria-label="Cerrar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="sheet-pretitle" id="sheetPretitle"></div>
+    <div class="sheet-title" id="sheetTitle"></div>
+    <div class="sheet-sub" id="sheetSub"></div>
+    <div class="sheet-tiers" id="sheetTiers"></div>
+
+    <div class="sheet-rp" style="margin-top:22px;">
+      <div class="sheet-rp-label">Tu nombre completo <span class="req">· Obligatorio</span></div>
+      <div class="rp-field" id="nameField">
+        <input type="text" id="buyerName" placeholder="Nombre y apellido" autocomplete="name" />
+      </div>
+    </div>
+
+    <div class="sheet-rp">
+      <div class="sheet-rp-label">¿De qué parte vienes? <span class="req">· Obligatorio</span></div>
+      <div class="sheet-rp-sub">Si vienes por un RP, escribe su nombre. Sin este dato no puedes continuar al pago.</div>
+      <div class="rp-seg" id="rpSeg">
+        <button type="button" class="rp-seg-btn" data-src="rp">Vengo por un RP</button>
+        <button type="button" class="rp-seg-btn" data-src="cuenta">Cuenta propia</button>
+      </div>
+      <div class="rp-other" id="rpOther">
+        <input type="text" id="rpOtherInput" placeholder="¿Cuál RP? Escribe su nombre completo" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="sheet-foot">
+      <div class="sheet-total"><span>Total · 1 acceso</span><strong id="sheetTotal">$0</strong></div>
+      <button class="btn btn-primary btn-full btn-lg" id="sheetPay" onclick="goToCheckout()">
+        Continuar al pago
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <div class="sheet-pay">Pago seguro con Mercado Pago · SPEI · Tarjeta · OXXO</div>
+    </div>
+  </div>
+</div>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#000000"/>
+    <circle cx="50" cy="50" r="22" fill="#1F1FFF"/>
+  </svg>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+#inicio :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-weight: 200 !important }
+#inicio :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-weight: 400 !important }
+#inicio :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-weight: 500 !important }
+#inicio :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-family: Inter !important }
+#inicio :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-weight: 700 !important }
+</style>
