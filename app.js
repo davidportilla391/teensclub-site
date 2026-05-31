@@ -254,12 +254,37 @@ async function goToCheckout() {
   };
   try { localStorage.setItem('tc_last_order', JSON.stringify(order)); } catch (e) {}
 
-  // Manda al link de pago de MercadoPago. Al terminar, MercadoPago regresa a gracias.html
-  // (configúralo en el link: URLs de retorno → éxito → URL de tu gracias.html).
-  if (cover.link) { window.location.href = cover.link; return; }
+  // Mostrar loading en botón
+  const btn = document.getElementById('sheetPay');
+  const originalText = btn.textContent;
+  btn.textContent = 'Preparando pago...';
+  btn.disabled = true;
 
-  // Fallback (si algún cover no tiene link)
-  alert('Este cover aún no tiene link de pago configurado.');
+  try {
+    const res = await fetch('/api/create-preference', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cover: cover.id,
+        price: cover.price,
+        title: cover.name,
+        buyerName: sheetState.name,
+        folio: order.id,
+        rp: sheetState.rp
+      })
+    });
+    const data = await res.json();
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      throw new Error('Sin init_point');
+    }
+  } catch (err) {
+    console.error('Error MP:', err);
+    btn.textContent = originalText;
+    btn.disabled = false;
+    alert('Hubo un error al procesar el pago. Intenta de nuevo.');
+  }
 }
 
 /* ---------------------------------------------------------------- COUNTDOWN --- */
