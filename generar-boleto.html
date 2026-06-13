@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TeensClub® — Generar boleto</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;color:#fff;font-family:system-ui,sans-serif;padding:24px 20px;min-height:100vh}
+.wrap{max-width:460px;margin:0 auto}
+h1{font-size:26px;font-weight:900;margin-bottom:8px}
+p{color:#888;font-size:14px;margin-bottom:24px;line-height:1.5}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:6px;margin-top:16px}
+input,select{width:100%;background:#111;border:1px solid #333;border-radius:6px;padding:13px 14px;color:#fff;font-size:15px;font-weight:600;font-family:inherit;outline:none}
+input:focus,select:focus{border-color:#1f1fff}
+select option{background:#111}
+button{width:100%;padding:15px;border-radius:6px;background:#1f1fff;color:#fff;font-size:15px;font-weight:700;font-family:inherit;border:none;cursor:pointer;margin-top:20px}
+.result{display:none;margin-top:28px;background:#111;border:1px solid #333;border-radius:10px;padding:20px}
+.folio{text-align:center;font-size:20px;font-weight:900;color:#1f1fff;letter-spacing:.06em;margin-bottom:16px}
+canvas{display:block;margin:0 auto 16px;background:#fff;border-radius:6px}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a1a1f;font-size:14px}
+.row:last-child{border-bottom:none}
+.row span:first-child{color:#888;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.btn2{background:#fff;color:#000;margin-top:12px}
+.btn3{background:transparent;border:1px solid #333;color:#fff;margin-top:8px}
+.back{display:block;text-align:center;margin-top:24px;color:#555;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+
+/* LOCK */
+.lock{position:fixed;inset:0;background:#000;z-index:99;display:flex;align-items:center;justify-content:center;padding:24px}
+.lock-box{background:#111;border:1px solid #333;border-radius:12px;padding:36px 28px;max-width:320px;width:100%;text-align:center}
+.lock-box h2{font-size:20px;font-weight:900;margin-bottom:4px}
+.lock-box p{font-size:11px;color:#888;letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px}
+.lock-box input{margin-bottom:12px;text-align:center;letter-spacing:.1em}
+.lock-box button{margin-top:0}
+.err{color:#e5484d;font-size:12px;font-weight:700;margin-top:10px;display:none}
+</style>
+</head>
+<body>
+
+<div class="lock" id="lock">
+  <div class="lock-box">
+    <h2>TeensClub®</h2>
+    <p>Generador de boletos · Staff</p>
+    <input type="password" id="pwd" placeholder="Contraseña"/>
+    <button id="enterBtn">Entrar →</button>
+    <div class="err" id="err">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <h1>Generar boleto</h1>
+  <p>Para pagos en efectivo. El folio y QR se generan automáticamente.</p>
+
+  <label>Nombre completo</label>
+  <input type="text" id="nombre" placeholder="Nombre Apellido"/>
+
+  <label>Cover</label>
+  <select id="cover">
+    <option value="Barra libre">Barra libre — $250 MXN</option>
+  </select>
+
+  <label>RP (opcional)</label>
+  <input type="text" id="rp" placeholder="Nombre del RP o cuenta propia"/>
+
+  <button id="genBtn">Generar boleto →</button>
+
+  <div class="result" id="result">
+    <div class="folio" id="folio"></div>
+    <canvas id="qr" width="200" height="200"></canvas>
+    <div id="filas"></div>
+    <button class="btn2" id="dlBtn">↓ Descargar QR</button>
+    <button class="btn3" id="nuevoBtn">Generar otro</button>
+  </div>
+
+  <a class="back" href="index.html">← Volver al sitio</a>
+</div>
+
+<script>
+var PASS = 'teensclub26';
+var LOG  = 'https://script.google.com/macros/s/AKfycbzuGhixYZMHrKU2y7rKVDQ_CfcqpNYEWWs1MaFebWszCRrCMZUnTN9NfTto4vFvLlys/exec';
+var order = null;
+
+// ── LOGIN ──
+document.getElementById('enterBtn').addEventListener('click', function(){
+  if(document.getElementById('pwd').value === PASS){
+    document.getElementById('lock').style.display = 'none';
+  } else {
+    document.getElementById('err').style.display = 'block';
+    document.getElementById('pwd').value = '';
+  }
+});
+document.getElementById('pwd').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') document.getElementById('enterBtn').click();
+});
+
+// ── GENERAR ──
+document.getElementById('genBtn').addEventListener('click', function(){
+  var nombre = document.getElementById('nombre').value.trim();
+  if(nombre.length < 3){ alert('Escribe el nombre completo.'); return; }
+  var cover  = document.getElementById('cover').value;
+  var rp     = document.getElementById('rp').value.trim() || 'Cuenta propia';
+  var a      = Date.now().toString(36).toUpperCase().slice(-4);
+  var b      = Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,3);
+  var folio  = 'TC1-' + a + '-' + b;
+  var fecha  = new Date().toLocaleString('es-MX');
+
+  order = { folio:folio, nombre:nombre, cover:cover, rp:rp, fecha:fecha, precio:250, evento:'TeensClub Vol.01', metodo:'Efectivo' };
+
+  // Dibujar QR simple con canvas (módulos)
+  dibujarQR('TEENSCLUB VOL.01\nFolio: '+folio+'\nNombre: '+nombre+'\nCover: '+cover+'\nRP: '+rp);
+
+  document.getElementById('folio').textContent = folio;
+  document.getElementById('filas').innerHTML =
+    fila('Nombre', nombre) + fila('Cover', cover) +
+    fila('Total', '$250 MXN · Efectivo') + fila('RP', rp) + fila('Fecha', fecha);
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+
+  fetch(LOG, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(order)}).catch(function(){});
+});
+
+function fila(k, v){ return '<div class="row"><span>'+k+'</span><span>'+v+'</span></div>'; }
+
+// ── DESCARGAR ──
+document.getElementById('dlBtn').addEventListener('click', function(){
+  if(!order) return;
+  var c = document.getElementById('qr');
+  var a = document.createElement('a');
+  a.download = 'TeensClub-' + order.folio + '.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+});
+
+// ── NUEVO ──
+document.getElementById('nuevoBtn').addEventListener('click', function(){
+  document.getElementById('nombre').value = '';
+  document.getElementById('rp').value = '';
+  document.getElementById('result').style.display = 'none';
+  order = null;
+});
+
+// ── QR ENGINE (Reed-Solomon + módulos en canvas) ──────────────────────────
+function dibujarQR(text){
+  var canvas = document.getElementById('qr');
+  var ctx    = canvas.getContext('2d');
+  try {
+    var qr = crearQR(text);
+    var n  = qr.length;
+    var sz = 200;
+    var cell = sz / n;
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, sz, sz);
+    ctx.fillStyle = '#000';
+    for(var r=0;r<n;r++) for(var c=0;c<n;c++) if(qr[r][c]) ctx.fillRect(Math.floor(c*cell), Math.floor(r*cell), Math.ceil(cell), Math.ceil(cell));
+  } catch(e) {
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,200,200);
+    ctx.fillStyle='#000'; ctx.font='12px monospace'; ctx.textAlign='center';
+    ctx.fillText('QR no disponible', 100, 95);
+    ctx.fillText('Folio: ' + (order?order.folio:''), 100, 115);
+  }
+}
+
+// Micro QR generator
+function crearQR(s){
+  // Encode UTF-8
+  var bytes=[];
+  for(var i=0;i<s.length;i++){
+    var c=s.charCodeAt(i);
+    if(c<128)bytes.push(c);
+    else if(c<2048){bytes.push(192|(c>>6));bytes.push(128|(c&63));}
+    else{bytes.push(224|(c>>12));bytes.push(128|((c>>6)&63));bytes.push(128|(c&63));}
+  }
+  // Pick version by size
+  var ver=1;
+  var caps=[0,17,32,53,78,106,134,154,192,230,271,321,367,425,458,520,586,644,718,792,858,929,1003,1091,1171,1273,1367,1465,1528,1628,1732,1840,1952,2068,2188,2303,2431,2563,2699,2809,2953];
+  while(ver<40 && caps[ver]<bytes.length+3) ver++;
+  var qr=new QRGen(ver,0); // M level=0
+  qr.addBytes(bytes);
+  qr.make();
+  return qr.grid;
+}
+
+function QRGen(ver,ecl){
+  this.ver=ver; this.ecl=ecl;
+  this.size=ver*4+17;
+  this.grid=[];
+  this.fn=[];
+  for(var i=0;i<this.size;i++){this.grid.push(new Array(this.size).fill(false));this.fn.push(new Array(this.size).fill(false));}
+  this.bytes=[];
+}
+QRGen.prototype.addBytes=function(b){this.bytes=b;};
+QRGen.prototype.make=function(){
+  this.drawFinder(0,0);this.drawFinder(this.size-7,0);this.drawFinder(0,this.size-7);
+  this.drawTiming();this.drawAlign();
+  this.drawFormatBits(0);
+  var data=this.buildData();
+  this.drawData(data);
+  var best=0,bscore=1e9;
+  for(var m=0;m<8;m++){var sc=this.applyMask(m,true);if(sc<bscore){bscore=sc;best=m;}}
+  this.applyMask(best,false);
+  this.drawFormatBits(best);
+};
+QRGen.prototype.set=function(r,c,v,fn){if(r<0||r>=this.size||c<0||c>=this.size)return;this.grid[r][c]=v;if(fn)this.fn[r][c]=true;};
+QRGen.prototype.drawFinder=function(r,c){
+  for(var dr=-1;dr<=7;dr++)for(var dc=-1;dc<=7;dc++){
+    var v=(dr>=0&&dr<=6&&dc>=0&&dc<=6)&&(dr==0||dr==6||dc==0||dc==6||(dr>=2&&dr<=4&&dc>=2&&dc<=4));
+    if(r+dr>=0&&r+dr<this.size&&c+dc>=0&&c+dc<this.size)this.set(r+dr,c+dc,v,true);
+  }
+};
+QRGen.prototype.drawTiming=function(){
+  for(var i=8;i<this.size-8;i++){this.set(6,i,i%2==0,true);this.set(i,6,i%2==0,true);}
+};
+QRGen.prototype.drawAlign=function(){
+  var pos=[[],[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]];
+  if(this.ver<2)return;
+  var ap=pos[this.ver];
+  for(var i=0;i<ap.length;i++)for(var j=0;j<ap.length;j++){
+    var r=ap[i],c=ap[j];
+    if(this.fn[r][c])continue;
+    for(var dr=-2;dr<=2;dr++)for(var dc=-2;dc<=2;dc++) this.set(r+dr,c+dc,Math.abs(dr)==2||Math.abs(dc)==2||(!dr&&!dc),true);
+  }
+};
+QRGen.prototype.drawFormatBits=function(mask){
+  var ecBits={0:1,1:0,2:3,3:2}; // M=0->01
+  var data=(ecBits[this.ecl]<<3)|mask;
+  var g=0x537;var rem=data<<10;
+  for(var i=14;i>=10;i--) if(rem>>i&1) rem^=g<<(i-10);
+  var bits=((data<<10)|rem)^0x5412;
+  var seq=[0,1,2,3,4,5,7,8,8,7,5,4,3,2,1,0]; // placeholder positions
+  // Standard format info positions
+  for(var i=0;i<=5;i++) this.set(8,i,(bits>>i)&1,true);
+  this.set(8,7,(bits>>6)&1,true);this.set(8,8,(bits>>7)&1,true);this.set(7,8,(bits>>8)&1,true);
+  for(var i=9;i<=14;i++) this.set(14-i+8,8,(bits>>i)&1,true); // rows 6..0
+  for(var i=0;i<=7;i++) this.set(this.size-1-i,8,(bits>>i)&1,true);
+  for(var i=8;i<=14;i++) this.set(8,this.size-15+i,(bits>>i)&1,true);
+  this.set(this.size-8,8,true,true);
+};
+QRGen.prototype.buildData=function(){
+  // RS tables
+  var EXP=[]; var LOG=new Array(256).fill(0);
+  EXP[0]=1;for(var i=1;i<256;i++){EXP[i]=EXP[i-1]*2;if(EXP[i]>=256)EXP[i]^=285;}
+  for(var i=0;i<255;i++) LOG[EXP[i]]=i;
+  function gmul(a,b){return a&&b?EXP[(LOG[a]+LOG[b])%255]:0;}
+  function genpoly(n){var p=[1];for(var i=0;i<n;i++){var q=new Array(p.length+1).fill(0);for(var j=0;j<p.length;j++){q[j]^=gmul(p[j],EXP[i]);q[j+1]^=p[j];}p=q;}return p;}
+  function rs(data,nec){var g=genpoly(nec);var rem=data.slice();rem=rem.concat(new Array(nec).fill(0));for(var i=0;i<data.length;i++){var c=rem[i];if(c)for(var j=0;j<g.length;j++)rem[i+j]^=gmul(g[j],c);}return rem.slice(data.length);}
+
+  // Version block table (dataBytes, ecBytes per block, blocks) for M level
+  var vt=[[0,0,1],[16,10,1],[28,16,1],[44,26,1],[64,18,2],[86,24,2],[108,16,4],[124,18,4],[154,22,2],[182,22,3],[216,26,4],[254,30,1],[290,22,6],[334,22,4],[365,24,2],[415,24,4],[453,28,4],[507,28,4],[563,26,5],[627,26,6],[669,26,6],[714,26,6],[782,28,7],[860,28,8],[914,28,5],[1000,28,7],[1062,28,5],[1128,28,8],[1193,28,5],[1267,28,3],[1373,28,5],[1455,28,3],[1541,28,5],[1631,28,4],[1725,28,5],[1812,28,4],[1914,28,5],[1992,28,5],[2102,28,6],[2216,28,6],[2334,28,6]];
+  var tot=vt[this.ver][0],ecPer=vt[this.ver][1],nblk=vt[this.ver][2];
+  var dataPer=Math.floor((tot-ecPer*nblk)/nblk);
+  var data=[4,this.bytes.length&0xFF].concat(this.bytes);
+  while(data.length<tot-ecPer*nblk) data.push(data.length%2?17:236);
+  // split into blocks
+  var blocks=[],ecblocks=[];
+  for(var b=0;b<nblk;b++){var d=data.splice(0,dataPer);blocks.push(d);ecblocks.push(rs(d,ecPer));}
+  // interleave
+  var out=[];
+  var maxd=Math.max.apply(null,blocks.map(function(x){return x.length;}));
+  for(var i=0;i<maxd;i++) for(var b=0;b<nblk;b++) if(i<blocks[b].length) out.push(blocks[b][i]);
+  for(var i=0;i<ecPer;i++) for(var b=0;b<nblk;b++) out.push(ecblocks[b][i]);
+  // remainder bits
+  var rem=[0,0,7,7,7,7,7,0,0,0,0,0,0,0,3,3,3,3,3,3,3,4,4,4,4,4,4,4,3,3,3,3,3,3,3,0,0,0,0,0,0];
+  for(var i=0;i<rem[this.ver];i++) out.push(0);
+  return out;
+};
+QRGen.prototype.drawData=function(data){
+  var bit=0;
+  var col=this.size-1;
+  while(col>0){
+    if(col==6) col--;
+    var up=(col%4<2)==(Math.floor(col/2)%2==0);
+    for(var row2=0;row2<this.size;row2++){
+      var r=up?this.size-1-row2:row2;
+      for(var dc=0;dc<2;dc++){
+        var c=col-dc;
+        if(!this.fn[r][c]){
+          this.grid[r][c]=bit<data.length*8?(data[bit>>3]>>(7-(bit&7)))&1:false;
+          bit++;
+        }
+      }
+    }
+    col-=2;
+  }
+};
+QRGen.prototype.applyMask=function(m,score){
+  var fn=[function(r,c){return(r+c)%2==0;},function(r,c){return r%2==0;},function(r,c){return c%3==0;},function(r,c){return(r+c)%3==0;},function(r,c){return(Math.floor(r/2)+Math.floor(c/3))%2==0;},function(r,c){return r*c%2+r*c%3==0;},function(r,c){return(r*c%2+r*c%3)%2==0;},function(r,c){return((r+c)%2+r*c%3)%2==0;}];
+  for(var r=0;r<this.size;r++) for(var c=0;c<this.size;c++) if(!this.fn[r][c]&&fn[m](r,c)) this.grid[r][c]=!this.grid[r][c];
+  if(!score) return 0;
+  // Simple penalty
+  var pen=0;
+  for(var r=0;r<this.size;r++){var run=0,last=null;for(var c=0;c<this.size;c++){var v=this.grid[r][c];if(v===last)run++;else{if(run>=5)pen+=run-2;run=1;last=v;}}}
+  return pen;
+};
+</script>
+</body>
+</html>
