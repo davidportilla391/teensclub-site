@@ -1,69 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TeensClub® — Evento</title>
-<meta name="theme-color" content="#000000" />
-<link rel="stylesheet" href="colors_and_type.css" />
-<link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+[build]
+  publish = "."
+  functions = "netlify/functions"
 
-<div class="event-page-bg">
-  <div class="event-back">
-    <a class="bk" href="index.html#eventos">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
-      Volver a eventos
-    </a>
-    <a href="index.html" class="wm">TeensClub<sup>®</sup></a>
-  </div>
-
-  <div class="sheet sheet-page" role="region" aria-labelledby="sheetTitle">
-    <div class="sheet-pretitle" id="sheetPretitle"></div>
-    <div class="sheet-title" id="sheetTitle"></div>
-    <div class="sheet-sub" id="sheetSub"></div>
-
-    <div class="sheet-dash" id="sheetDash"></div>
-
-    <div class="sheet-acc-label">Tu acceso</div>
-    <div class="sheet-tiers" id="sheetTiers"></div>
-
-    <div class="sheet-rp" style="margin-top:22px;">
-      <div class="sheet-rp-label">Tu nombre completo <span class="req">· Obligatorio</span></div>
-      <div class="rp-field" id="nameField">
-        <input type="text" id="buyerName" placeholder="Nombre y apellido" autocomplete="name" />
-      </div>
-    </div>
-
-    <div class="sheet-rp">
-      <div class="sheet-rp-label">¿De qué parte vienes? <span class="req">· Obligatorio</span></div>
-      <div class="sheet-rp-sub">Si vienes por un RP, escribe su nombre. Sin este dato no puedes continuar al pago.</div>
-      <div class="rp-seg" id="rpSeg">
-        <button type="button" class="rp-seg-btn" data-src="rp">Vengo por un RP</button>
-        <button type="button" class="rp-seg-btn" data-src="cuenta">Cuenta propia</button>
-      </div>
-      <div class="rp-other" id="rpOther">
-        <input type="text" id="rpOtherInput" placeholder="¿Cuál RP? Escribe su nombre completo" autocomplete="off" />
-      </div>
-    </div>
-
-    <div class="sheet-foot">
-      <div class="sheet-total"><span>Total · 1 acceso</span><strong id="sheetTotal">$0</strong></div>
-      <button class="btn btn-primary btn-full btn-lg" id="sheetPay" onclick="goToCheckout()">
-        Continuar al pago
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </button>
-      <div class="sheet-pay">Pago seguro con MercadoPago · Tarjeta · SPEI · OXXO</div>
-    </div>
-  </div>
-</div>
-
-<template id="__bundler_thumbnail">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#000000"/><circle cx="50" cy="40" r="16" fill="#1F1FFF"/><rect x="30" y="64" width="40" height="8" rx="2" fill="#FAFAFA"/></svg>
-</template>
-
-<script src="app.js"></script>
-<script>initEventPage();</script>
-</body>
-</html>
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
